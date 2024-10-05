@@ -27,6 +27,9 @@ WORKDIR /usr/share/nginx/html
 COPY --from=builder /app/dist .
 COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 8080
+RUN chgrp -R root /var/cache/nginx /var/run /var/log/nginx && \
+    chmod -R 770 /var/cache/nginx /var/run /var/log/nginx
+
+EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
