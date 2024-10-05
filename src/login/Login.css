@@ -39,10 +39,10 @@
     border-radius: 25px;
     font-size: 1rem;
     width: 100%;
-    background-color: #0575E6;
+    background-color: #0575e6;
 }
 
 .login-register {
     text-decoration: none;
-    color: #0768CA;
+    color: rgba(11, 196, 85, 0.533);
 }

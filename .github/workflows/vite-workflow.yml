@@ -116,13 +116,13 @@ jobs:
         file: ./Dockerfile
         context: .
     
-    - name: Создай или обнови Evolution Container App
-      uses: CLOUDdotRu/evo-container-app-action@main
-      with:
-          # project_id: ${{ env.PROJECT_ID }}
-          client_id: ${{ env.EVOAR_KEYID }}
-          client_secret: ${{ env.EVOAR_KEYSECRET }}
-          registry_uri: ${{ env.EVOAR_URI }}
-          image_name: frontend@${{ steps.build_push.outputs.digest }}	
-          name: gitverse-action-test6
-          port: 8080
+    # - name: Создай или обнови Evolution Container App
+    #   uses: CLOUDdotRu/evo-container-app-action@main
+    #   with:
+    #       # project_id: ${{ env.PROJECT_ID }}
+    #       client_id: ${{ env.EVOAR_KEYID }}
+    #       client_secret: ${{ env.EVOAR_KEYSECRET }}
+    #       registry_uri: ${{ env.EVOAR_URI }}
+    #       image_name: frontend@${{ steps.build_push.outputs.digest }}	
+    #       name: gitverse-action-test6
+    #       port: 8080
