@@ -112,7 +112,7 @@ jobs:
         push: true
         platforms: linux/amd64
         provenance: false
-        tags: ${{ env.EVOAR_URI }}/frontend:build${{ github.sha }}
+        tags: ${{ env.EVOAR_URI }}/frontend:front-build-${{ github.sha }}
         file: ./Dockerfile
         context: .
     
