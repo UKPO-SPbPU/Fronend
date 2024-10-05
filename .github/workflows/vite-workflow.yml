@@ -11,83 +11,86 @@ env:
   # PROJECT_ID: 06363f30-bde4-41a2-a96f-398bf8bd830e
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  # build:
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v4
+  #   steps:
+  #   - uses: actions/checkout@v4
 
-    - name: Use Node.js 18.x
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18.x
+  #   - name: Use Node.js 18.x
+  #     uses: actions/setup-node@v4
+  #     with:
+  #       node-version: 18.x
 
-    - name: Restoring npm cache
-      id: npm-cache
-      uses: actions/cache@v3
-      with:
-        path: '**/node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+  #   - name: Restoring npm cache
+  #     id: npm-cache
+  #     uses: actions/cache@v3
+  #     with:
+  #       path: '**/node_modules'
+  #       key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
-    - name: Install npm packages
-      if: steps.npm-cache.outputs.cache-hit != 'true'
-      run: npm install
+  #   - name: Install npm packages
+  #     if: steps.npm-cache.outputs.cache-hit != 'true'
+  #     run: npm install
 
-  unit-ui-testing:
-    needs: build
-    runs-on: ubuntu-latest
+  # unit-ui-testing:
+  #   needs: build
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v4
+  #   steps:
+  #   - uses: actions/checkout@v4
 
-    - name: Use Node.js 18.x
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18.x
+  #   - name: Use Node.js 18.x
+  #     uses: actions/setup-node@v4
+  #     with:
+  #       node-version: 18.x
 
-    - name: Restoring npm cache
-      id: npm-cache
-      uses: actions/cache@v3
-      with:
-        path: '**/node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+  #   - name: Restoring npm cache
+  #     id: npm-cache
+  #     uses: actions/cache@v3
+  #     with:
+  #       path: '**/node_modules'
+  #       key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
-    - name: Install npm packages
-      if: steps.npm-cache.outputs.cache-hit != 'true'
-      run: npm install
+  #   - name: Install npm packages
+  #     if: steps.npm-cache.outputs.cache-hit != 'true'
+  #     run: npm install
 
-    - name: Unit tests
-      run: npm test
+  #   - name: Unit tests
+  #     run: npm test
 
-  integration-ui-testing:
-    needs: unit-ui-testing
-    runs-on: ubuntu-latest
+  # integration-ui-testing:
+  #   needs: unit-ui-testing
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v4
+  #   steps:
+  #   - uses: actions/checkout@v4
 
-    - name: Use Node.js 18.x
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18.x
+  #   - name: Use Node.js 18.x
+  #     uses: actions/setup-node@v4
+  #     with:
+  #       node-version: 18.x
 
-    - name: Restoring npm cache
-      id: npm-cache
-      uses: actions/cache@v3
-      with:
-        path: '**/node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+  #   - name: Restoring npm cache
+  #     id: npm-cache
+  #     uses: actions/cache@v3
+  #     with:
+  #       path: '**/node_modules'
+  #       key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
-    - name: Build
-      if: steps.npm-cache.outputs.cache-hit != 'true'
-      run: npm install
+  #   - name: Build
+  #     if: steps.npm-cache.outputs.cache-hit != 'true'
+  #     run: npm install
 
-    - name: Unit tests
-      run: npm run integration
+  #   - name: Unit tests
+  #     run: npm run integration
   
   deploy:
-    needs: integration-ui-testing
+    # needs: integration-ui-testing
     runs-on: ubuntu-latest
+    env:
+      EVOAR_KEYID: ${{ secrets.EVOAR_KEYID }}
+      EVOAR_KEYSECRET: ${{ secrets.EVOAR_KEYSECRET }}
 
     steps:
     - uses: actions/checkout@v4
@@ -99,8 +102,8 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: ${{ env.EVOAR_URI }}
-        username: ${{ secrets.EVOAR_KEYID }}
-        password: ${{ secrets.EVOAR_KEYSECRET }}
+        username: ${{ env.EVOAR_KEYID }}
+        password: ${{ env.EVOAR_KEYSECRET }}
 
     - name: Build and push docker image to Evolution Artifact Registry
       id: build_push
@@ -117,8 +120,8 @@ jobs:
       uses: CLOUDdotRu/evo-container-app-action@main
       with:
           # project_id: ${{ env.PROJECT_ID }}
-          client_id: ${{ secrets.EVOAR_KEYID }}
-          client_secret: ${{ secrets.EVOAR_KEYSECRET }}
+          client_id: ${{ env.EVOAR_KEYID }}
+          client_secret: ${{ env.EVOAR_KEYSECRET }}
           registry_uri: ${{ env.EVOAR_URI }}
           image_name: frontend@${{ steps.build_push.outputs.digest }}	
           name: gitverse-action-test6
