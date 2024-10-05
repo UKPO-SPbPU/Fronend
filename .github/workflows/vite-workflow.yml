@@ -86,16 +86,17 @@ jobs:
       run: npm run integration
   
   deploy:
+    needs: integration-ui-testing
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
 
     - name: Set up Docker buildx
-      uses: https://github.com/docker/setup-buildx-action@v1
+      uses: docker/setup-buildx-action@v1
       
     - name: Log in to Evolution Artifact Registry
-      uses: https://github.com/docker/login-action@v2
+      uses: docker/login-action@v2
       with:
         registry: ${{ env.EVOAR_URI }}
         username: ${{ secrets.EVOAR_KEYID }}
@@ -103,7 +104,7 @@ jobs:
 
     - name: Build and push docker image to Evolution Artifact Registry
       id: build_push
-      uses: https://github.com/docker/build-push-action@v4
+      uses: docker/build-push-action@v4
       with:
         push: true
         platforms: linux/amd64
@@ -113,7 +114,7 @@ jobs:
         context: .
     
     - name: Создай или обнови Evolution Container App
-      uses: https://github.com/CLOUDdotRu/evo-container-app-action@main
+      uses: CLOUDdotRu/evo-container-app-action@main
       with:
           # project_id: ${{ env.PROJECT_ID }}
           client_id: ${{ secrets.EVOAR_KEYID }}
