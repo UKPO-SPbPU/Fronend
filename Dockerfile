@@ -20,16 +20,13 @@ COPY . ./
 RUN npm run build
 
 
-FROM nginx:1.16.0-alpine
+FROM nginxinc/nginx-unprivileged 
 
 WORKDIR /usr/share/nginx/html
 
 COPY --from=builder /app/dist .
 COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/default.conf
 
-RUN chgrp -R root /var/cache/nginx /var/run /var/log/nginx && \
-    chmod -R 770 /var/cache/nginx /var/run /var/log/nginx
-
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["nginx", "-g", "daemon off;"]
