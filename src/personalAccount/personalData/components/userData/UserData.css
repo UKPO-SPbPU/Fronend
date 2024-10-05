@@ -1,0 +1,8 @@
+.user-data-person {
+    color: #5227CC;
+}
+
+.user-data-phone {
+    color: grey;
+    margin-top: calc(var(--g-step) * -1);
+}

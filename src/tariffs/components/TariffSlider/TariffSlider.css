@@ -1,0 +1,92 @@
+:root {
+    --blue-custom: #9db5e5;
+    --darkred: #c6bfee;
+    --platinum: #e5e5e5;
+    --black: #2b2d42;
+    --white: #fff;
+    --thumb: #edf2f4;
+}
+
+.cards {
+    display: flex;
+    padding: 25px 0;
+    list-style: none;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 100%;
+    padding: 20px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
+    scroll-snap-align: start;
+    transition: all 0.2s;
+    flex-basis: 300px;
+    width: 300px;
+    height: 400px;
+    text-align: start;
+}
+
+.card:not(:last-child) {
+    margin-right: 10px;
+}
+
+.card .card-title {
+    font-size: 20px;
+}
+
+.card .card-content {
+    max-width: 85%;
+    margin: 1rem auto;
+}
+
+.card .card-link-wrapper {
+    margin-top: auto;
+}
+
+.card .card-link {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background: var(--blue-custom);
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.cards::-webkit-scrollbar {
+    height: 12px;
+}
+
+.cards::-webkit-scrollbar-thumb,
+.cards::-webkit-scrollbar-track {
+    border-radius: 92px;
+}
+
+.cards::-webkit-scrollbar-thumb {
+    background: var(--darkred);
+}
+
+.cards::-webkit-scrollbar-track {
+    background: var(--thumb);
+}
+
+.tariff-card-submit {
+    margin-top: auto;
+    width: 60%;
+}
+
+.tariff-card-submit{
+    margin-top: auto;
+    width: 60%;
+}
+
+.tariff-card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}

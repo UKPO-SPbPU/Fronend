@@ -1,0 +1,15 @@
+.tariff-description .col-sm-3 {
+    padding-left: 0;
+}
+
+.tariff-description-info {
+    color: #5227CC;
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.tariff-description-date {
+    color: grey;
+    margin: calc(var(--g-step) * -1) 0 0;
+}

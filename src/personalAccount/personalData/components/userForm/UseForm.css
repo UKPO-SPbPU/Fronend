@@ -1,0 +1,26 @@
+.user-form .btn-link {
+    text-decoration: none;
+    --bs-btn-hover: #4e22ee;
+    --bs-btn-active: #4315ec;
+}
+
+.user-form .col-sm-5 {
+    padding-right: 0;
+}
+
+.save-btn .btn:first-child {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.save-btn .btn:last-child {
+    padding-right: 0;
+}
+
+.change-pwd {
+    padding-left: 0;
+}
+
+.pwd-submit-btn {
+    float: right;
+}

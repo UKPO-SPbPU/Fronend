@@ -1,0 +1,32 @@
+.reports-btn .btn-primary {
+    margin-left: calc(var(--g-step) * 4);
+}
+
+.reports-btn .btn-primary:last-child {
+    margin-left: calc(var(--g-step) * 5.5);
+}
+
+.reports-btn {
+    margin-top: calc(var(--g-step) * 4);
+}
+
+.report-heading {
+    margin-top: calc(var(--g-step) * 2);
+}
+
+.hr-report {
+    margin-bottom: 0;
+    opacity: 10%;
+}
+
+.report-result {
+    float: right;
+}
+
+.report-spinner {
+    position: absolute;
+    top: 55%;
+    left: 55%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}

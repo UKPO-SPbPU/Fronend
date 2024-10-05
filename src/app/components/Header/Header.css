@@ -1,0 +1,32 @@
+.header-container {
+    width: 100%;
+    height: 97px;
+    background: #E8E4F2;
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.header-data-container {
+    margin-left: auto;
+    margin-right: 5%;
+    margin-top: 2%;
+    height: fit-content;
+    background: #FFFDFD;
+    border-radius: 10px;
+    display: flex;
+}
+
+.header-icon {
+    padding: 0px 4px;
+    color: #5227CC;
+    font-size: 1.5rem;
+    margin: 8px;
+}
+
+.header-container-info-user {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-right: 8px;
+}

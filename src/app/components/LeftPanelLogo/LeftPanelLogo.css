@@ -1,0 +1,24 @@
+.login-left-panel {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background: linear-gradient(#0575E6, #021B79);
+    vertical-align: middle;
+    width: 60%;
+}
+
+.login-left-panel-label {
+    margin-top:auto;
+    margin-left: 25%;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.login-left-panel-description {
+    margin-bottom: auto;
+    margin-left: 25%;
+    color: white;
+    font-size: 14px;
+    font-weight: 60;
+}

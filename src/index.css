@@ -1,0 +1,12 @@
+:root {
+    --g-step: 8px;
+}
+
+.btn-primary {
+    --bs-btn-bg: #5c31f1;
+    --bs-btn-border-color: #5c31f1;
+    --bs-btn-hover-bg: #4e22ee;
+    --bs-btn-active-bg: #4315ec;
+    --bs-btn-disabled-bg: #6f4fee;
+    --bs-btn-disabled-border-color: #6f4fee;
+}

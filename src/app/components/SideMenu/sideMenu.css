@@ -1,0 +1,142 @@
+.side-menu-header-container {
+    display: flex;
+    flex: 1;
+}
+
+.side-menu-logo-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 8px;
+}
+
+.side-menu-kklr {
+    height: 100%;
+    font-size: 33px;
+}
+
+.side-menu {
+    background: rgb(82, 39, 204);
+    color: rgb(255, 255, 255);
+    height: 100%;
+    width: 230px;
+    min-width: 230px;
+    text-align: left;
+    transition: width 0s ease 0s, left 0s ease 0s, right 0s ease 0s, all 0.3s ease 0s;
+    position: relative;
+    z-index: 1009;
+}
+
+.side-menu-container {
+    height: 100%;
+    position: relative;
+    z-index: 101;
+}
+
+.side-menu-container-two {
+    height: 100%;
+    overflow: hidden auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 101;
+}
+
+.side-menu-header {
+    border-bottom: 1px solid rgba(173, 173, 173, 0.2);
+}
+
+.side-menu-header-div {
+    padding: 24px 30px;
+    font-weight: bold;
+    font-size: 17px;
+    letter-spacing: 1px;
+    overflow: hidden;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    white-space: nowrap;
+}
+
+.side-menu-header-text {
+    padding: 24px 30px;
+    font-weight: bold;
+    font-size: 17px;
+    letter-spacing: 1px;
+    overflow: hidden;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    white-space: nowrap;
+}
+
+.side-menu-content {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    padding-top: 15px;
+}
+
+.side-menu-content-menu {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.side-menu-content-menu-ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu-item {
+    margin: 0 !important;
+    font-size: 1.3rem !important;
+    list-style: none;
+}
+
+[role=button] {
+    cursor: pointer;
+}
+
+.side-menu-item-container {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 8px 2px 8px 15px;
+    height: 45px;
+    cursor: pointer;
+    outline: none;
+}
+
+.side-menu-item-icon {
+    padding: 0 4px;
+    margin-right: 10px;
+    width: 30px;
+}
+
+.side-menu-item-link {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.side-menu-footer {
+    margin: 0 !important;
+    font-size: 1.3rem !important;
+    list-style: none;
+}
+
+.side-menu-footer-li {
+    list-style: none;
+    margin: 10px 15px;
+}
+
+.side-menu-footer-item {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 8px 2px 8px 15px;
+    height: 45px;
+    cursor: pointer;
+    outline: none;
+}
