@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 env:
-  EVOAR_URI: ukpo-spbpu.cr.cloud.ru
+  EVOAR_URI: ukpo-spbstu.cr.cloud.ru
   # PROJECT_ID: 06363f30-bde4-41a2-a96f-398bf8bd830e
 
 jobs:
