@@ -116,7 +116,7 @@ jobs:
     - name: Connect to VM via SSH
       uses: appleboy/ssh-action@master
       with:
-        host: '84.201.170.120'
+        host: 84.201.170.120
         usermane: romashov
         key: ${{ env.KEY}}
         passphrase: ${{ env.KEY_PHRASE }}
