@@ -117,7 +117,7 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: 84.201.170.120
-        usermane: romashov
+        username: romashov
         key: ${{ env.KEY}}
         passphrase: ${{ env.KEY_PHRASE }}
         port: 22
