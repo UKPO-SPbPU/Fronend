@@ -127,6 +127,7 @@ jobs:
         IMAGE_TAG: front-build-${{ github.sha }}
       run:
         # if [ "$(docker ps -q -f name="front")" ]; then
+        docker ps -a
         docker rm front
         # fi
         # docker pull ${{ env.CR_REGISTRY }}/${{ env.CR_REPOSUTORY }}:front-build-${{ github.sha }} \
