@@ -122,6 +122,7 @@ jobs:
         passphrase: ${{ env.KEY_PHRASE }}
         port: 22
         script: |
+          whoami
           docker ps -a
           if [ "$(docker ps -q -f name="front")" ]; then
             docker rm -f front
