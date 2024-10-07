@@ -114,7 +114,7 @@ jobs:
         file: ./Dockerfile
         context: .
 
-    - name: Connect to VM via SSH
+    - name: Connect to VM via SSH and deploy Front
       uses: appleboy/ssh-action@master
       with:
         host: 84.201.170.120
@@ -127,22 +127,9 @@ jobs:
             --username oauth \
             --password-stdin \
            cr.yandex
-          whoami
           docker ps -a
           if [ "$(docker ps -q -f name="front")" ]; then
             docker rm -f front
           fi
           docker pull ${{ env.CR_REGISTRY }}/${{ env.CR_REPOSUTORY }}:front-build-${{ github.sha }}
           sudo docker run --name front -dp 8080:8080 ${{ env.CR_REGISTRY }}/${{ env.CR_REPOSUTORY }}:front-build-${{ github.sha }}
-
-    # - name: Run commands on VM
-    #   env: 
-    #     IMAGE_TAG: front-build-${{ github.sha }}
-    #   run: |
-    #     # if [ "$(docker ps -q -f name="front")" ]; then
-    #     docker ps -a
-    #     docker rm front
-    #     # fi
-    #     # docker pull ${{ env.CR_REGISTRY }}/${{ env.CR_REPOSUTORY }}:front-build-${{ github.sha }} \
-    #     # sudo docker run --name front -dp 8080:8080 ${{ env.CR_REGISTRY }}/${{ env.CR_REPOSUTORY }}:front-build-${{ github.sha }} \
-    
