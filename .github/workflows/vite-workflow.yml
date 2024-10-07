@@ -89,6 +89,7 @@ jobs:
       CR_REPOSUTORY:  ${{ secrets.CR_REPOSUTORY }}
       KEY: ${{ secrets.KEY }}
       KEY_PHRASE: ${{ secrets.KEY_PHRASE }}
+      OATH_KEY: ${{ secrets.OATH_KEY }}
 
     steps:
     - uses: actions/checkout@v4
@@ -122,6 +123,10 @@ jobs:
         passphrase: ${{ env.KEY_PHRASE }}
         port: 22
         script: |
+          echo ${{ env.OATH_KEY }} | docker login \
+            --username oauth \
+            --password-stdin \
+           cr.yandex
           whoami
           docker ps -a
           if [ "$(docker ps -q -f name="front")" ]; then
