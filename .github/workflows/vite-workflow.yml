@@ -133,3 +133,5 @@ jobs:
           fi
           docker pull ${{ env.CR_REGISTRY }}/${{ env.CR_REPOSUTORY }}:front-build-${{ github.sha }}
           sudo docker run --name front -dp 8080:8080 ${{ env.CR_REGISTRY }}/${{ env.CR_REPOSUTORY }}:front-build-${{ github.sha }}
+          docker image prune -a -f
+          docker container prune -f
