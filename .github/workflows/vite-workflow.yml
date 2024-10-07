@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  EVOAR_URI: ukpo-spbstu.cr.cloud.ru
-  # PROJECT_ID: 06363f30-bde4-41a2-a96f-398bf8bd830e
-
 jobs:
   # build:
   #   runs-on: ubuntu-latest
@@ -89,10 +85,10 @@ jobs:
     # needs: integration-ui-testing
     runs-on: ubuntu-latest
     env:
-      EVOAR_KEYID: ${{ secrets.EVOAR_KEYID }}
-      EVOAR_KEYSECRET: ${{ secrets.EVOAR_KEYSECRET }}
-      CR_REGISTRY: "cr.yandex/crpnh1ma9g5si6u3fpsf"
-      CR_REPOSUTORY: "frontend"
+      CR_REGISTRY: ${{ secrets.CR_REGISTRY }}
+      CR_REPOSUTORY:  ${{ secrets.CR_REPOSUTORY }}
+      KEY: ${{ secrets.KEY }}
+      KEY_PHRASE: ${{ secrets.KEY_PHRASE }}
 
     steps:
     - uses: actions/checkout@v4
@@ -105,32 +101,34 @@ jobs:
       uses: yc-actions/yc-cr-login@v1
       with:
         yc-sa-json-credentials: ${{ secrets.AUTHORISED_KEY }}
-      
-    # - name: Log in to Evolution Artifact Registry
-    #   uses: docker/login-action@v2
-    #   with:
-    #     registry: ${{ env.EVOAR_URI }}
-    #     username: ${{ env.EVOAR_KEYID }}
-    #     password: ${{ env.EVOAR_KEYSECRET }}
 
-    - name: Build and push docker image to Evolution Artifact Registry
+    - name: Build and push docker image to Yandex Container Registry
       id: build_push
       uses: docker/build-push-action@v4
       with:
         push: true
         platforms: linux/amd64
         provenance: false
-        tags: ${{ env.CR_REGISTRY }}/frontend:front-build-${{ github.sha }}, ${{ env.CR_REGISTRY }}/frontend:latest
+        tags: ${{ env.CR_REGISTRY }}/${{ env.CR_REPOSUTORY }}:front-build-${{ github.sha }}
         file: ./Dockerfile
         context: .
+
+    - name: Connect to VM via SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: '84.201.170.120'
+        usermane: romashov
+        key: ${{ env.KEY}}
+        passphrase: ${{ env.KEY_PHRASE }}
+        port: 22
+
+    - name: Run commands on VM
+      env: 
+        IMAGE_TAG: front-build-${{ github.sha }}
+      run:
+        if [ "$(docker ps -q -f name="front")" ]; then
+          docker rm front &> /dev/null
+        fi
+        docker pull ${{ env.CR_REGISTRY }}/${{ env.CR_REPOSUTORY }}:front-build-${{ github.sha }}
+        sudo docker run --name front -dp 8080:8080 ${{ env.CR_REGISTRY }}/${{ env.CR_REPOSUTORY }}:front-build-${{ github.sha }}
     
-    # - name: Создай или обнови Evolution Container App
-    #   uses: CLOUDdotRu/evo-container-app-action@main
-    #   with:
-    #       # project_id: ${{ env.PROJECT_ID }}
-    #       client_id: ${{ env.EVOAR_KEYID }}
-    #       client_secret: ${{ env.EVOAR_KEYSECRET }}
-    #       registry_uri: ${{ env.EVOAR_URI }}
-    #       image_name: frontend@${{ steps.build_push.outputs.digest }}	
-    #       name: gitverse-action-test6
-    #       port: 8080
