@@ -123,7 +123,11 @@ jobs:
         port: 22
         script: |
           docker ps -a
-          docker rm front
+          if [ "$(docker ps -q -f name="front")" ]; then
+            docker rm -f front
+          fi
+          docker pull ${{ env.CR_REGISTRY }}/${{ env.CR_REPOSUTORY }}:front-build-${{ github.sha }}
+          sudo docker run --name front -dp 8080:8080 ${{ env.CR_REGISTRY }}/${{ env.CR_REPOSUTORY }}:front-build-${{ github.sha }}
 
     # - name: Run commands on VM
     #   env: 
